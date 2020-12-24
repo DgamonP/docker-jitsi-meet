@@ -67,5 +67,10 @@ mkdir -p ~/.jitsi-meet-cfg/{web/letsencrypt,transcripts,prosody/config,prosody/p
 docker-compose up -d
 ```
 
+_verifica tu instalacion en tu dominio_
+https://www.yourdomain.com
 
+o 
+
+**localhost**
 
