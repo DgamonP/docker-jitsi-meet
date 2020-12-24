@@ -13,7 +13,7 @@ systemctl enable --now docker ; usermod -aG docker $USER ; newgrp docker
 ## Clonar Repositorio
 
 ```bash
-git clone https://github.com/DgamonP/docker-jitsi-meet && cd docker-jitsi-skyclick
+git clone https://github.com/DgamonP/docker-jitsi-skyclick && cd docker-jitsi-skyclick
 ```
 ## Installation
 
