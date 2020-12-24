@@ -1,19 +1,71 @@
-# Jitsi Meet on Docker
+# Jitsi Meet Docker Skyclick
 
-![](resources/jitsi-docker.png)
+realizar la instalacion como Super Usuario
+## Setup
 
-[Jitsi](https://jitsi.org/) is a set of Open Source projects that allows you to easily build and deploy secure videoconferencing solutions.
+Instalar dependencias 
+```bash
+apt update ; apt install -y build-essential net-tools curl git software-properties-common neofetch apt-transport-https ca-certificates curl gnupg-agent docker.io docker-compose
+```
+```bash
+systemctl enable --now docker ; usermod -aG docker $USER ; newgrp docker
+```
+## Clonar Repositorio
 
-[Jitsi Meet](https://jitsi.org/jitsi-meet/) is a fully encrypted, 100% Open Source video conferencing solution that you can use all day, every day, for free — with no account needed.
-
-This repository contains the necessary tools to run a Jitsi Meet stack on [Docker](https://www.docker.com) using [Docker Compose](https://docs.docker.com/compose/).
-
+```bash
+git clone https://github.com/DgamonP/docker-jitsi-meet && cd docker-jitsi-skyclick
+```
 ## Installation
 
-The installation manual is available [here](https://jitsi.github.io/handbook/docs/devops-guide/devops-guide-docker).
+```bash
+cp env.example .env
+```
+_Verificar valores de IP local y hostname_
 
-## TODO
+```
+hostname -I
+```
+Resultado tu direccion IP local
 
-* Support container replicas (where applicable).
-* TURN server.
+```
+hostname
+```
+Resultado "www.room.skyclick.com" o **asigne un dominio propio**
+
+_Editar el archivo .env_
+modifique los siguientes valores
+
+**HTTP_PORT=80**
+
+**HTTPS_PORT=443**
+
+**TZ=Asia/Kolkata**
+
+**PUBLIC_URL="https://www.yourdomain.com"**
+
+**DOCKER_HOST_ADDRESS=yourIPlocal**
+
+**ENABLE_HTTP_REDIRECT=1**
+
+```bash
+nano .env
+```
+_Generar claves Jitsi_
+
+```bash
+./gen-passwords.sh
+```
+_Crear las carpetas de configuracion_
+
+```bash
+mkdir -p ~/.jitsi-meet-cfg/{web/letsencrypt,transcripts,prosody/config,prosody/prosody-plugins-custom,jicofo,jvb,jigasi,jibri}
+```
+
+## Desplegar con Docker-compose 🚀
+
+```bash
+docker-compose up -d
+```
+
+
 
